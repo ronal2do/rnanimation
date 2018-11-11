@@ -6,10 +6,10 @@
  * @flow
  */
 
-import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
-import Circle from './Circle';
-import Pulse from './Pulse';
+import React, { PureComponent } from 'react'
+import { StyleSheet, View } from 'react-native'
+import Circle from './Circle'
+import Pulse from './Pulse'
 
 const hex2rgba = (hex, alpha) => {
   const [r, g, b] = hex.match(/\w\w/g).map(x => parseInt(x, 16))
@@ -21,15 +21,15 @@ const hex2rgba = (hex, alpha) => {
 }
 
 type Props = {};
-export default class App extends Component<Props> {
+export default class App extends PureComponent<Props> {
   render() {
     return (
       <View style={styles.container}>
         <Pulse color='white' numPulses={3} diameter={200} speed={20} duration={3500} >
-          <Circle range={['0deg', '360deg']} />
+          <Circle ref={this.anim} range={['0deg', '360deg']} />
         </Pulse>
       </View>
-    );
+    )
   }
 }
 
@@ -50,4 +50,4 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
-});
+})
